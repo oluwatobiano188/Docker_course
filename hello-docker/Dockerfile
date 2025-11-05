@@ -4,4 +4,4 @@ WORKDIR /app
 
 COPY . .
 
-CMD node hello.js
+CMD ["npm", "start"]

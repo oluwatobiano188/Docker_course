@@ -1,4 +1,5 @@
 version: "3"
+
 services:
   nextjs:
     build: .
@@ -10,4 +11,18 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
+      - MONGO_URI=mongodb://mongo:27017/nextjsdb
     command: npm run dev
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
