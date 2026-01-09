@@ -1,4 +1,3 @@
-version: '3.9'
 services:
   mongo:
     image: mongo
@@ -7,7 +6,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongo_data:/data/dbs
+      - mongo_data:/data/db
 
   backend:
     build: ./backend
@@ -19,9 +18,16 @@ services:
       - ./backend/.env
     volumes:
       - ./backend:/app
-    command: npm run dev   
+    command: npm run dev
     depends_on:
       - mongo
+    develop:
+      watch:
+        - action: sync
+          path: ./backend
+          target: /app
+        - action: rebuild
+          path: ./backend/package.json
 
   frontend:
     build: ./frontend
@@ -31,6 +37,19 @@ services:
       - "5173:5173"
     depends_on:
       - backend
+    develop:
+      watch: 
+        - action: sync
+          path: ./frontend
+          target: /app
+          ignore:
+            - node_modules/
+            - .git/
+            - Dockerfile
+            - package-lock.json 
+        - action: rebuild
+          path: ./frontend/package.json
+
 
 volumes:
   mongo_data:

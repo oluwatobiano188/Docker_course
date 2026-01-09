@@ -1,4 +1,4 @@
-# .github/workflows/docker-build.yml
+
 name: Build and Push Docker Image
 
 on:
@@ -29,4 +29,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker_course:latest
+          tags: ${{ secrets.oluwatobiano }}/docker_course:latest

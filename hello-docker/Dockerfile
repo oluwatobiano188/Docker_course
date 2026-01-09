@@ -1,7 +1,7 @@
-FROM node:20-alpine
+FROM node
 
 WORKDIR /app
 
 COPY . .
 
-CMD ["npm", "start"]
+CMD node hello.js

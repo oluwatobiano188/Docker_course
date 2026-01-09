@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 .catch(err => console.error('MongoDB error:', err));
 
 app.get('/', (req, res) => {
-  res.send('Docker is live and so am I !');
+  res.send('Docker is live watago');
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

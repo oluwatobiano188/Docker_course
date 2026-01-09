@@ -1,0 +1,10 @@
+node_modules
+.git
+*.zip
+*.tar
+*.mp4
+*.jpg
+*.png
+*.log
+dist
+coverage
