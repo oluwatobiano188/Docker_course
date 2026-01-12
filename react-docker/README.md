@@ -32,7 +32,4 @@ The goal of this project is to demonstrate real, working knowledge of Docker con
 - ✅ Image successfully built locally
 - ✅ Docker Hub authentication implemented
 - ✅ Image pushed to Docker Hub
-- 🔄 CI pipeline improvements in progress
-
----
-
+- 🔄 CI pipeline improvements in progress/
