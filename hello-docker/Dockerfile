@@ -1,7 +1,11 @@
-FROM node
+FROM node:18-alpine/node
 
 WORKDIR /app
 
+COPY package*.json ./ /app/
+
+RUN npn nstall 
+
 COPY . .
 
-CMD node hello.js
+CMD ["npm", "start"]
