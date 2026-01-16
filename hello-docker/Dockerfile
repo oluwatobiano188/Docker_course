@@ -1,11 +1,11 @@
-FROM node:18-alpine/node
 
-WORKDIR /app
+FROM node:18-alpine
 
-COPY package*.json ./ /app/
 
-RUN npn nstall 
+WORKDIR /usr/src/app
 
-COPY . .
 
-CMD ["npm", "start"]
+COPY hello.js .
+
+
+CMD ["node", "hello.js"]
