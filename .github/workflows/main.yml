@@ -26,16 +26,16 @@ jobs:
       - name: Build and push frontend
         uses: docker/build-push-action@v5
         with:
-          context: ./Mern/frontend
-          file: ./Mern/frontend/Dockerfile
+          context: ./mern/frontend
+          file: ./mern/frontend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/Mern-frontend:latest  
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mern-frontend:latest  
 
       - name: Build and push backend
         uses: docker/build-push-action@v5
         with:
-          context: ./Mern/backend
-          file: ./Mern/backend/Dockerfile
+          context: ./mern/backend
+          file: ./mern/backend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/Mern-backend:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mern-backend:latest
 
