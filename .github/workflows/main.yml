@@ -14,7 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Verify MERN paths
+      - name: Verify mernpaths
         run: |
           echo "Repo root:"
           ls -la
