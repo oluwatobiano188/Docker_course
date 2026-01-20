@@ -1,33 +1,31 @@
-
+version: '3.8'
 services:
   mongo:
-    image: mongo:6
-    container_name: mongo
-    restart: unless-stopped
+    image: mongo:latest
+    ports:
+      - "27017:27017"
     volumes:
-      - mongo_data:/data/db
+      - mongo-data:/data/db
 
   backend:
-    build:
-      context: ./backend
-    container_name: backend
-    restart: unless-stopped
-    env_file:
-      - ./backend/.env
+    build: ./backend
     ports:
       - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongo:27017/mern_docker_db
     depends_on:
       - mongo
 
   frontend:
-    build:
-      context: ./frontend
-    container_name: frontend
-    restart: unless-stopped
+    build: ./frontend
     ports:
-      - "5173:5173"
+      - "5173:5173"  
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
     depends_on:
       - backend
 
 volumes:
-  mongo_data:
+  mongo-data:
