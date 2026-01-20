@@ -25,22 +25,22 @@ jobs:
         run: |
           pwd
           ls -la
-          ls -la Mern_docker || true
+          ls -la mern_docker || true
 
       - name: Build and push frontend
         uses: docker/build-push-action@v5
         with:
-          context: ./Mern_docker/frontend
-          file: ./Mern_docker/frontend/Dockerfile
+          context: ./mern_docker/frontend
+          file: ./mern_docker/frontend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/Mern-frontend:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mern-frontend:latest
 
       - name: Build and push backend
         uses: docker/build-push-action@v5
         with:
-          context: ./Mern_docker/backend
-          file: ./Mern_docker/backend/Dockerfile
+          context: ./mern_docker/backend
+          file: ./mern_docker/backend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/Mern-backend:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mern-backend:latest
 
 
