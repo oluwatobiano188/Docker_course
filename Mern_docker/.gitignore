@@ -1,0 +1,37 @@
+# Dependencies
+**/node_modules/
+
+# Environment variables - NEVER PUSH THESE
+**/.env
+.env
+*.env
+
+# Except .env.example files (these are safe to push)
+!**/.env.example
+
+# Build outputs
+**/dist/
+**/build/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Docker volumes data (optional)
+**/mongo-data/

@@ -1,10 +1,7 @@
 node_modules
+npm-debug.log
+.env
 .git
-*.zip
-*.tar
-*.mp4
-*.jpg
-*.png
-*.log
-dist
-coverage
+.gitignore
+README.md
+.DS_Store

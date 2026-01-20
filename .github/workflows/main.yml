@@ -1,39 +1,51 @@
-name: Build and Push Docker Images
+name: Build & Push MERN Images (docker_course)
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - main
+      - master
 
 jobs:
-  build:
+  docker:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Verify MERN paths
+        run: |
+          echo "Repo root:"
+          ls -la
+          echo "mern_docker:"
+          ls -la mern_docker
+          echo "Frontend:"
+          ls -la mern_docker/frontend
+          echo "Backend:"
+          ls -la mern_docker/backend
+
+      
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Log in to Docker Hub
+     
+      - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Show repo structure
-        run: |
-          pwd
-          ls -la
-          ls -la mern_docker || true
-
+     
       - name: Build and push frontend
         uses: docker/build-push-action@v5
         with:
           context: ./mern_docker/frontend
           file: ./mern_docker/frontend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mern-frontend:latest
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/mern-frontend:latest
+
 
       - name: Build and push backend
         uses: docker/build-push-action@v5
@@ -41,6 +53,5 @@ jobs:
           context: ./mern_docker/backend
           file: ./mern_docker/backend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mern-backend:latest
-
-
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/mern-backend:latest
