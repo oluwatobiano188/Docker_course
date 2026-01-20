@@ -18,40 +18,34 @@ jobs:
         run: |
           echo "Repo root:"
           ls -la
-          echo "mern_docker:"
-          ls -la mern_docker
           echo "Frontend:"
-          ls -la mern_docker/frontend
+          ls -la frontend
           echo "Backend:"
-          ls -la mern_docker/backend
+          ls -la backend
 
-      
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-     
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-     
       - name: Build and push frontend
         uses: docker/build-push-action@v5
         with:
-          context: ./mern_docker/frontend
-          file: ./mern_docker/frontend/Dockerfile
+          context: ./frontend
+          file: ./frontend/Dockerfile
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/mern-frontend:latest
 
-
       - name: Build and push backend
         uses: docker/build-push-action@v5
         with:
-          context: ./mern_docker/backend
-          file: ./mern_docker/backend/Dockerfile
+          context: ./backend
+          file: ./backend/Dockerfile
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/mern-backend:latest
